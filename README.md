@@ -7,6 +7,17 @@ Some basic features include:
 - Some simple libraries included for DB access, media uploads, logging, data tables and routes
 - Full composer support
 - Routes are as simple as www.example.com/controller/method/
-- That's it, everything ele is up to you.
+- That's it, everything else is up to you.
 
-[Full Documentation](https://webtronic.ie/psf)
+- [Full Documentation](https://webtronic.ie/psf)
+- DB Library is from [MysqliDb](https://github.com/ThingEngineer/PHP-MySQLi-Database-Class)
+
+
+# Quick Start
+
+1. Download the lastest relese of PSF, and extract the archive
+2. All files should be behind the public facing section of your site except the contents of the public folder. This can be renamed to anything you like such as "httpdocs", "wwwroot", "public_html"
+3. Edit the .htaccess file in the public folder to correspond to your routes / server
+4. Open Config.php and edit your settings
+5. You should be good to go now.
+6. See [Full Documentation](https://webtronic.ie/psf) for all configuration and options
