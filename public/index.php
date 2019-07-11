@@ -6,6 +6,8 @@
  */
 define("SF_VERSION", '1.0.0');
 
+$debug = explode(' ', microtime())[0] + explode(' ', microtime())[1];
+
 include("../Config.php");
 
 
@@ -23,6 +25,8 @@ $controller = new \App\Controller();
 
 $controller->router->route();
 
-
+if($config->dev_mode) {
+    echo('<!--Page generated in ' . round((explode(' ', microtime())[0] + explode(' ', microtime())[1]) - $debug, 4) . ' seconds. PSF Dev Mode Enabled -->');
+}
 
 
