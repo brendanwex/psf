@@ -15,7 +15,7 @@ Some basic features include:
 
 # Quick Start
 
-1. Download the latest release of PSF, and extract the archive or install using composer `composer create-project webtronic/psf`
+1. Download the latest release of PSF, and extract the archive or install using composer `composer create-project "webtronic/psf:dev-master" my-project-name`
 2. All files should be behind the public facing section of your site except the contents of the public folder. This can be renamed to anything you like such as "httpdocs", "wwwroot", "public_html"
 3. Edit the .htaccess file in the public folder to correspond to your routes / server
 4. Open Config.php and edit your settings
