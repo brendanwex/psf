@@ -1,6 +1,16 @@
 {
-
-
-
+    "name": "webtronic/psf",
+    "description": "A simple MVC PHP Framework, no fuss",
+    "type": "project",
+    "license": "GNU GPL",
+    "authors": [
+        {
+            "name": "Brendan Doyle",
+            "email": "brnedan@webtronic.ie"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.0.0"
+    }
 }
-
