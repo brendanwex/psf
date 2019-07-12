@@ -2,7 +2,7 @@
     "name": "webtronic/psf",
     "description": "A simple MVC PHP Framework, no fuss",
     "type": "project",
-    "license": "GPL-3.0-or-later",
+    "license": "MIT",
     "authors": [
         {
             "name": "Brendan Doyle",
