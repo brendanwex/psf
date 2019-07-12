@@ -1,0 +1,18 @@
+<?php 
+/* Cachekey: cache/stash_default/documentation\api\php\27b666e61d86fa522369b913c014c670/ */
+/* Type: array */
+/* Expiration: 2019-07-16T04:04:34+02:00 */
+
+
+
+$loaded = true;
+$expiration = 1563242674;
+
+$data = array();
+
+/* Child Type: NULL */
+$data['return'] = unserialize(base64_decode('Tjs='));
+
+/* Child Type: integer */
+$data['createdOn'] = 1562842077;
+

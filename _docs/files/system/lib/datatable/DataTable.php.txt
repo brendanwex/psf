@@ -1,0 +1,251 @@
+<?php
+
+namespace App\Lib;
+
+
+class DataTable
+{
+
+
+    public $data = array();
+
+    public $paginate = true;
+
+    public $record_count;
+
+    public $page_limit;
+
+    public $columns;
+
+    public $class;
+
+
+    public function build_table()
+    {
+
+
+        return $this->table_header() . $this->table_content() . $this->table_footer();
+    }
+
+
+    public function table_header()
+    {
+
+
+        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+        $order = isset($_GET['order']) ? $_GET['order'] : '';
+        $orderby = isset($_GET['orderby']) ? $_GET['orderby'] : '';
+
+
+        $output = "<div class='datatable'>";
+
+        $output .= "<table class='$this->class'>";
+
+        $output .= "<thead><tr>";
+
+
+        foreach ($this->columns['cols'] as $key => $column) {
+
+
+            if (in_array($key, $this->columns['sort'])) {
+
+
+                if ($order == 'ASC' && $orderby = $key) {
+                    $asc_active = 'active';
+                } else {
+                    $asc_active = '';
+                }
+                if ($order == 'DESC' && $orderby = $key) {
+                    $desc_active = 'active';
+                } else {
+                    $desc_active = '';
+                }
+
+                $output .= "<th>" . $column . "<a class='sort sort-asc $asc_active' href='?page=$page&orderby=$key&order=ASC'><i class=\"fas fa-angle-up\"></i></a> <a href='?page=$page&orderby=$key&order=DESC' class='sort sort-desc $desc_active'><i class=\"fas fa-angle-down\"></i></a></th>";
+
+            } else {
+
+                $output .= "<th>" . $column . "</th>";
+
+            }
+
+
+        }
+
+
+        if (isset($this->columns['manage'])) {
+
+            $output .= "<th>Manage</th>";
+
+        }
+
+
+        $output .= "</tr></thead>";
+
+        return $output;
+
+
+    }
+
+
+    public function table_content()
+    {
+
+
+        $mange_col = false;
+
+        $manage_links = array();
+
+        $manage_key = '';
+
+        $cols = array_keys($this->columns['cols']);
+
+        if (isset($this->columns['manage'])) {
+
+            $mange_col = true;
+            $manage_links = $this->columns['manage'];
+            $manage_key = $this->columns['manage_key'];
+
+
+        }
+
+        $col_count = count($this->columns['cols']);
+
+
+        $output = "";
+
+
+        foreach ($this->data as $data) {
+
+            $output .= "<tr>";
+
+
+            for ($i = 0; $i < $col_count; $i++) {
+
+                $prepend = "";
+                $append = "";
+
+                $content = $data[$cols[$i]];
+
+                if (isset($this->columns['call_function'][$cols[$i]])) {
+
+                    $content = $this->columns['call_function'][$cols[$i]]($content);
+
+                }
+
+                if (isset($this->columns['prepend'][$cols[$i]])) {
+
+                    $prepend = $this->columns['prepend'][$cols[$i]];
+                }
+
+
+                if (isset($this->columns['append'][$cols[$i]])) {
+
+
+                    $append = $this->columns['append'][$cols[$i]];
+                }
+
+
+                $output .= "<td>" . $prepend . $content . $append . "</td>";
+
+
+            }
+
+
+            if ($mange_col) {
+
+                $output .= "<td>";
+
+                foreach ($manage_links as $manage) {
+                    $output .= "<a href='" . $manage['route'] . "/" . $data[$manage_key] . "' class='dt-manage {$manage['class']}' data-id='" . $data[$manage_key] . "'>" . $manage['label'] . "</a>";
+                }
+
+                $output .= "</td>";
+            }
+
+            $output .= "</tr>";
+
+        }
+
+
+
+
+        return $output;
+
+
+    }
+
+
+    public function table_footer()
+    {
+
+
+        $output = "</table>";
+
+
+        if ($this->paginate) {
+
+
+            $output .= $this->pagination();
+        }
+
+
+        $output .= "</div>";
+        return $output;
+
+
+    }
+
+
+    public function pagination()
+    {
+
+
+        if ($this->record_count > $this->page_limit) {
+
+            $page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+
+            $pages = intval($this->record_count / $this->page_limit);
+
+
+            $output = "<ul class='pagination'>";
+
+
+            if ($page > 1) {
+                $prev_page = $page - 1;
+
+                $output .= "<li class=\"page-item\"><a class=\"page-link\" href=\"?page=$prev_page\">Previous</a></li>";
+            } else {
+                $output .= "<li class=\"page-item disabled\"><a class=\"page-link\" href=\"#\">Previous</a></li>";
+
+            }
+
+            for ($i = 1; $i <= $pages; $i++) {
+
+                $output .= "<li class=\"page-item\"><a class=\"page-link\" href=\"?page=$i\">$i</a></li>";
+
+            }
+
+
+            if ($page < $pages) {
+                $next_page = $page + 1;
+                $output .= "<li class=\"page-item\"><a class=\"page-link\" href=\"?page=$next_page\">Next</a></li>";
+            } else {
+                $output .= "<li class=\"page-item disabled\"><a class=\"page-link\" href=\"#\">Next</a></li>";
+
+            }
+
+
+            $output .= "</ul>";
+
+
+            return $output;
+
+
+        }
+
+    }
+
+
+}
