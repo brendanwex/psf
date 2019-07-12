@@ -1,30 +1,44 @@
 <?php
 /**
- * Copyright (c) 2017.
- * Do not modify this file, see Config.php for modifications and constants
- * @Version 1.0
+ * Copyright (c) 2019.
+ * Do not modify this file, see Config.php for configuration
+ * @Version 1.0.0
+ * @Package psf
+ * @Since 1.0.0
+ * @License GPL
  */
 define("SF_VERSION", '1.0.0');
 
+/**
+ * Start Debug timer
+ */
 $debug = explode(' ', microtime())[0] + explode(' ', microtime())[1];
 
+/**
+ * Get configuration
+ */
 include("../Config.php");
-
-
 
 $config = new \App\Config();
 
-
-
-
+/**
+ * Load everything
+ */
 require('../'.$config->system_dir. "/bootstrap.php");
 
-
+/**
+ * Init our main controller
+ */
 $controller = new \App\Controller();
 
-
+/**
+ * Init our routing
+ */
 $controller->router->route();
 
+/**
+ * Sow load time if dev_mode is true
+ */
 if($config->dev_mode) {
     echo('<!--Page generated in ' . round((explode(' ', microtime())[0] + explode(' ', microtime())[1]) - $debug, 4) . ' seconds. PSF Dev Mode Enabled -->');
 }

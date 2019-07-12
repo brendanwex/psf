@@ -15,11 +15,18 @@ namespace App;
 use App\Lib\DataTable;
 use App\Lib\Logger;
 use App\Lib\Uploader;
+use App\Lib\MysqliDb;
 
 
 defined('SF_VERSION') OR exit('No direct script access allowed');
 
-
+/**
+ * Class Controller
+ * @package App
+ *
+ * When creating a controller you should extend this class to access useful methods such as $this->db, $this->logger, $this->router, $this->view and $this->redirect
+ *
+ */
 class Controller
 {
 
@@ -36,7 +43,7 @@ class Controller
         //Database
 
         if ($this->config->database['on']) {
-            $this->db = new \Db(array('host' => $this->config->database['host'], 'username' => $this->config->database['user'], 'password' => $this->config->database['password'], 'db' => $this->config->database['name'], 'port' => $this->config->database['port'], 'prefix' => $this->config->database['prefix']));
+            $this->db = new MysqliDb(array('host' => $this->config->database['host'], 'username' => $this->config->database['user'], 'password' => $this->config->database['password'], 'db' => $this->config->database['name'], 'port' => $this->config->database['port'], 'prefix' => $this->config->database['prefix']));
 
         }
 
@@ -148,8 +155,8 @@ class Controller
 
     /**
      * @param $location
-     *
-     * OOP Wrapper for redirect
+     * @param $flash_msg = (array) sets a session with a message in it, can be called with show_flash_msg(); helper. example array('class' => 'alert alert-success', 'msg' => 'Hello World')
+     * Wrapper for redirect
      */
     public function redirect($location, $flash_msg = array())
     {

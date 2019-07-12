@@ -2,6 +2,16 @@
 
 namespace App;
 
+/**
+ * Class Config
+ * @package App
+ * @since 1.0.0
+ *
+ * This our main configuration class, you can add your own options to the bottom of this class or extend it.
+ *
+ * Property's can be accessed from Models and Controllers using $this->config->property_name
+ *
+ */
 class Config
 {
 
@@ -16,6 +26,14 @@ class Config
      * System base path
      */
     public $abs_path = __DIR__;
+
+
+    /**
+     * Default Controller & Method
+     */
+
+    public $default_controller = "Home";
+    public $default_method = "index";
 
     /**
      * Force SSL
@@ -75,12 +93,6 @@ class Config
     public $timezone = "Europe/Dublin";
 
     public $date_format = "d-m-Y";
-
-
-    /**
-     * Encryption
-     */
-
 
 
     /**

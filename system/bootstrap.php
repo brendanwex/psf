@@ -12,7 +12,9 @@ if($config->dev_mode) {
 }
 
 
-
+/**
+ * Defined paths and dirs
+ */
 
 define('VIEWS_PATH', $config->abs_path . DIRECTORY_SEPARATOR . $config->app_dir . DIRECTORY_SEPARATOR . "views/");
 define('MODULES_PATH', $config->abs_path  . DIRECTORY_SEPARATOR . $config->app_dir . DIRECTORY_SEPARATOR . "/modules/");
@@ -20,6 +22,7 @@ define('APP_PATH', $config->abs_path  . DIRECTORY_SEPARATOR . $config->app_dir .
 define('SYSTEM_PATH', $config->abs_path  . DIRECTORY_SEPARATOR . $config->system_dir . DIRECTORY_SEPARATOR);
 define('DEV_LOG_DIR', $config->abs_path . DIRECTORY_SEPARATOR. $config->app_dir . DIRECTORY_SEPARATOR. "logs/");
 define("BASE_PATH", $config->base_url);
+
 /*
  * Error View
  */
@@ -38,8 +41,9 @@ define('DATE_FORMAT', $config->date_format);
  * Routing
  */
 
-define('DEFAULT_CONTROLLER', 'Home');
-define('DEFAULT_METHOD', 'index');
+define('DEFAULT_CONTROLLER', $config->default_controller);
+
+define('DEFAULT_METHOD', $config->default_method);
 
 
 
@@ -55,16 +59,6 @@ if($config->composer){
     }
 
 }
-
-
-/*
- * Encryption Keys & Security
- */
-define('AUTH_SALT', 'K,GMYMXVoM#,/j5!NNyyH-W69f(I4)N/}Y)Iza]}WV%()Q7:zr)+ru<2YrH/wu1.');
-define('LOGIN_ATTEMPTS', 3); // user will be locked out after 3 unsuccessful attempts and IP address will be blocked.
-
-
-
 
 
 
@@ -101,7 +95,9 @@ foreach($config->helpers as $helper){
     }
 
 
-
+/**
+ * Load our helpers
+ */
 
 include(SYSTEM_PATH."helpers.php");
 

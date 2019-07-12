@@ -1,19 +1,20 @@
 <?php
-/**
- * @User Brendan
- * @Package custom-php-framework
- * @File controller.class.php
- * @Date 29-Mar-17  2:15 PM
- * @Version
- */
-
 namespace App;
 
 use App\Lib\Logger;
 use App\Lib\Uploader;
+use App\Lib\MysqliDb;
 
 defined('SF_VERSION') OR exit('No direct script access allowed');
 
+/**
+ * Class Model
+ * You can extend this class in your custom models to allow you quick access to $this->db, $this->uploader, $this->logger if enabled in Config.php
+ * @package App
+ *
+ *
+ *
+ */
 class Model
 {
 
@@ -27,7 +28,7 @@ class Model
         //Database
 
         if ($this->config->database['on']) {
-            $this->db = new \Db(array('host' => $this->config->database['host'], 'username' => $this->config->database['user'], 'password' => $this->config->database['password'], 'db' => $this->config->database['name'], 'port' => $this->config->database['port'], 'prefix' => $this->config->database['prefix']));
+            $this->db = new MysqliDb(array('host' => $this->config->database['host'], 'username' => $this->config->database['user'], 'password' => $this->config->database['password'], 'db' => $this->config->database['name'], 'port' => $this->config->database['port'], 'prefix' => $this->config->database['prefix']));
 
         }
 
