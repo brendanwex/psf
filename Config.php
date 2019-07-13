@@ -4,7 +4,7 @@ namespace App;
 
 /**
  * Class Config
- * @package App
+ * @package PSF
  * @since 1.0.0
  *
  * This our main configuration class, you can add your own options to the bottom of this class or extend it.

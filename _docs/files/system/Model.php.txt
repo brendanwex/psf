@@ -8,9 +8,10 @@ use App\Lib\MysqliDb;
 defined('SF_VERSION') OR exit('No direct script access allowed');
 
 /**
- * Class Model
- * You can extend this class in your custom models to allow you quick access to $this->db, $this->uploader, $this->logger if enabled in Config.php
- * @package App
+ * The main Model class.
+ * You can extend this class in your custom models to allow you quick access to inbuilt libraries such as $this->db, $this->uploader, $this->logger if enabled in Config.php
+ * @package PSF
+ * @since 1.0.0
  *
  *
  *
@@ -19,6 +20,9 @@ class Model
 {
 
 
+    /**
+     * Model constructor.
+     */
     function __construct()
     {
 
