@@ -9,7 +9,7 @@ Some basic features include:
 - Routes are as simple as www.example.com/controller/method/
 - That's it, everything else is up to you.
 
-- [Full Documentation](https://psf.webtronic.ie/)
+- [Full Documentation](https://brendanwex.github.io/psf/)
 - DB Library is from [MysqliDb](https://github.com/ThingEngineer/PHP-MySQLi-Database-Class)
 
 
@@ -20,4 +20,4 @@ Some basic features include:
 3. Edit the .htaccess file in the public folder to correspond to your routes / server
 4. Open Config.php and edit your settings
 5. You should be good to go now.
-6. See [Full Documentation](https://psf.webtronic.ie/) for all configuration and options
+6. See [Full Documentation](https://brendanwex.github.io/psf/) for all configuration and options
