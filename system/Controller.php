@@ -14,6 +14,7 @@ namespace App;
 
 use App\Lib\DataTable;
 use App\Lib\Logger;
+use App\Lib\Session;
 use App\Lib\Uploader;
 use App\Lib\MysqliDb;
 
@@ -34,7 +35,14 @@ class Controller
     {
 
 
+
+        if (class_exists('App\Lib\Session')) {
+            $this->session = new Session();
+            $this->session->start();
+        }
+
         $this->config = new Config();
+
 
         //Make our router class available
         $this->router = new Lib\Router();
@@ -160,8 +168,6 @@ class Controller
      */
     public function redirect($location, $flash_msg = array())
     {
-
-        session_start();
 
         if (!empty($flash_msg)) {
 

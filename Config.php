@@ -2,6 +2,9 @@
 
 namespace App;
 
+defined('SF_VERSION') OR exit('No direct script access allowed');
+
+
 /**
  * Class Config
  * @package PSF
@@ -102,7 +105,7 @@ class Config
      *
      */
 
-    public $autoload = ['uploader', 'hooks', 'datatable'];
+    public $autoload = ['uploader', 'hooks', 'datatable', 'session'];
 
 
 
@@ -114,6 +117,24 @@ class Config
      * eg functions.php would be loaded with public $helpers = ['functions'];
      */
     public $helpers = ['functions', 'hooks'];
+
+
+    /**
+     * These are your own custom Libraries or classes located in the app/libraries directory.
+     *
+     * They should be loaded by filename without the .php extension
+     *
+     * eg  MyClass.php would be loaded with public $libraries = ['MyClass'];
+     */
+    public $libraries = [];
+
+
+    /**
+     * The name of your PHP session if left empty PHPSESSID will be used.
+     * @see https://php.net/manual/en/function.session-name.php
+     * @var string
+     */
+    public $session_name = "psf_session";
 
 
 }
