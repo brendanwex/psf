@@ -10,8 +10,14 @@ class Home extends \App\Controller
 {
 
 
+
+
     public function index(){
 
+
+
+
+        $this->session->flash_message('alert alert-success', 'Welcome to PSF');
 
 
 
@@ -36,6 +42,25 @@ class Home extends \App\Controller
 
 
         $this->view('home', $data);
+
+
+    }
+
+    public function model_demo(){
+
+        $demo_model = new Demo();
+
+        $people = $demo_model->show_list();
+
+        $data = array(
+
+            'title' => 'Demo when using Models',
+            'list' => $people
+
+        );
+
+        $this->view('model_demo', $data);
+
 
 
     }

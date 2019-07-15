@@ -279,20 +279,26 @@
 </head>
 <body>
 <div class="cover">
-
-    <?php show_flash_msg();?>
     <h1><?php echo $title; ?>
-        <small><?php echo $version; ?></small>
     </h1>
-    <p class="lead"><?php echo $content; ?></p>
-    <ul style="list-style: none;line-height: 30px;padding:0;">
-        <?php foreach ($features as $feature) {
-            ?>
 
-            <li>&#10004;  <?php echo $feature; ?></li>
+    <p class="lead">This is a demo on interacting with a Model</p>
 
-        <?php } ?>
-    </ul>
+    <div class="table" style="width: 70%;margin: auto;text-align: center">
+        <table width="100%" cellspacing="10" cellpadding="5">
+            <tr>
+                <th>List of random names</th>
+            </tr>
+            <?php foreach ($list as $names){?>
+            <tr>
+
+            <td><?php echo $names['name'];?></td>
+            </tr>
+
+            <?php } ?>
+
+        </table>
+    </div>
 
     <a class="github-button" href="https://github.com/brendanwex/psf/fork" data-size="large" data-show-count="true" aria-label="Fork brendanwex/psf on GitHub">Fork</a>
     <a class="github-button" href="https://github.com/brendanwex/psf/subscription" data-size="large" data-show-count="true" aria-label="Watch brendanwex/psf on GitHub">Watch</a>

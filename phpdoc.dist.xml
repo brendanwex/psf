@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdocumentor>
+    <title>PSF - PHP Simple Framework</title>
+    <parser>
+        <target>docs/</target>
+    </parser>
+    <transformer>
+        <target>docs/</target>
+    </transformer>
+    <files>
+        <directory>system/*</directory>
+    </files>
+</phpdocumentor>
