@@ -10,6 +10,8 @@
 
 namespace App\Lib;
 
+use App\Config;
+
 defined('SF_VERSION') OR exit('No direct script access allowed!');
 
 
@@ -86,6 +88,8 @@ class Router
 
         global $config;
 
+
+
         $sections = $this->_parse_route();
 
 
@@ -95,6 +99,20 @@ class Router
         if (empty($sections[1])) {
             $sections[1] = DEFAULT_METHOD;
         }
+
+
+        /**
+         * Parse config file for custom routes before defaulting to standard routing 
+         */
+
+        if(!empty($this->parse_custom_route($sections))){
+
+            $sections = $this->parse_custom_route($sections);
+
+        }
+
+
+
 
 
         try {
@@ -107,8 +125,6 @@ class Router
 
 
                 throw new \Exception('Controller or method specified may not exist, or method may not be publicly accessible.');
-
-                //print_r($sections);
 
 
             } else {
@@ -134,7 +150,7 @@ class Router
 
             if ($config->dev_mode) {
 
-              include(EXCEPTION_VIEW);
+                include(EXCEPTION_VIEW);
 
             } else {
 
@@ -144,6 +160,34 @@ class Router
 
 
         }
+
+
+    }
+
+
+    /**
+     * Looks for custom route sin the main Config.php and apples them before default routing.
+     * @param array $section
+     * @return array|bool
+     */
+
+    private function parse_custom_route($section){
+
+
+
+        $config = new Config();
+
+        foreach($config->routes as $route_key => $route){
+
+            if($route_key == $section[0]){
+
+                return array($route[0], $route[1]);
+                break;
+            }
+
+        }
+
+        return false;
 
 
     }
