@@ -7,7 +7,7 @@
  * @Since 1.0.0
  * @License GPL
  */
-define("SF_VERSION", '1.0.0');
+define("SF_VERSION", '1.0.2_Beta');
 
 /**
  * Start Debug timer
