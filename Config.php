@@ -136,6 +136,14 @@ class Config
      */
     public $session_name = "psf_session";
 
+    /**
+     *
+     * Custom routes
+     *
+     * 'login' => array('Auth', 'login)
+     * @var array
+     */
+    public $routes = [];
 
 }
 
