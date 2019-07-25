@@ -102,7 +102,7 @@ class Router
 
 
         /**
-         * Parse config file for custom routes before defaulting to standard routing 
+         * Parse config file for custom routes before defaulting to standard routing
          */
 
         if(!empty($this->parse_custom_route($sections))){
@@ -124,12 +124,31 @@ class Router
             if (!class_exists(ucfirst($sections[0])) || !method_exists(ucfirst($sections[0]), $this->dash_to_underscore($sections[1]))) {
 
 
-                throw new \Exception('Controller or method specified may not exist, or method may not be publicly accessible.');
+                throw new \Exception('Controller or method specified may not exist.');
 
 
             } else {
 
                 $main_controller = ucfirst($sections[0]);
+
+                $reflection = new \ReflectionClass($sections[0]);
+
+                /**
+                 * Check if this is actually a Controller!
+                 */
+
+                if (!$reflection->isSubclassOf('App\Controller')) {
+                    throw new \RuntimeException("You need to extend the App\Controller class for Routing to work. Also this maybe an attempt to access other sections of your code maliciously.");
+                }
+
+                /**
+                 * Check if method is actually public
+                 */
+
+                $reflection = new \ReflectionMethod($sections[0],$sections[1]);
+                if (!$reflection->isPublic()) {
+                    throw new \RuntimeException("The called method is not public.");
+                }
 
                 $router = new $main_controller();
 
